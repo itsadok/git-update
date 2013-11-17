@@ -1,0 +1,36 @@
+#!/bin/sh
+
+git fetch
+if (git status -b --porcelain | head -n 1 | grep -qv behind); then
+    echo Nothing to do
+    exit 0
+fi
+
+current=$(git rev-parse HEAD)
+echo HEAD is now at $current
+stash=
+if (git stash save -u "git-update stash" | grep -qv "No local changes"); then
+    echo "Stashed local changes"
+    stash=1
+fi
+
+if !(git pull --ff-only >/dev/null 2>&1); then
+    echo "Can't fast forward, trying rebase"
+    if !(git pull --rebase >/dev/null 2>&1); then
+        echo "Failed to rebase, trying merge"
+        git rebase --abort
+        if !(git pull --no-rebase >/dev/null 2>&1); then
+            echo "Failed to merge, reverting"
+            git merge --abort
+        fi
+    fi
+fi
+
+if [ "x$stash" = "x1" ]; then
+    echo "Unstashing local changes"
+    if !(git stash pop -q >/dev/null); then
+        echo "Could not apply stash cleanly, reverting."
+        git reset $current --hard
+        git stash pop -q
+    fi
+fi      
