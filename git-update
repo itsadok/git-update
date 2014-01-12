@@ -27,11 +27,11 @@ if !(git pull --ff-only >/dev/null 2>&1); then
     fi
 fi
 
-if [ "x$stash" = "x1" ]; then
+if [ "$stash" ]; then
     echo "Unstashing local changes"
     if !(git stash pop -q >/dev/null); then
         echo "Could not apply stash cleanly, reverting."
         git reset $current --hard
         git stash pop -q
     fi
-fi      
+fi
