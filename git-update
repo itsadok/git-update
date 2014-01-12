@@ -32,6 +32,7 @@ if [ "$stash" ]; then
     if !(git stash pop -q >/dev/null); then
         echo "Could not apply stash cleanly, reverting."
         git reset $current --hard
+        git clean -qfd
         git stash pop -q
     fi
 fi
