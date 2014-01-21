@@ -31,5 +31,3 @@ the repository will be restored to its original condition.
 
 Israel Tsadok. Code license - [CC0](http://creativecommons.org/publicdomain/zero/1.0/).
 
-Git Logo by [Jason Long](http://twitter.com/jasonlong) is licensed under the [Creative Commons Attribution 3.0
-Unported License](http://creativecommons.org/licenses/by/3.0/).
