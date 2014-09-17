@@ -26,6 +26,8 @@ the repository will be restored to its original condition.
 
 * Add options to use non-default remote and refspec.
 * Do a smart pull, like legit does it (don't rebase if there are merges in local branch).
+* http://stackoverflow.com/questions/15316601/why-is-git-pull-considered-harmful
+* https://gist.github.com/Boldewyn/8454951
 
 # Author
 
