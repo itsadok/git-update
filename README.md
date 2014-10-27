@@ -7,7 +7,7 @@ Here's one way to do it:
 
     git clone https://github.com/itsadok/git-update
     cd git-update
-    git config --global alias.update "!$(pwd)/git-update"
+    git config --global alias.update '!'"$(pwd)/git-update"
 
 # Usage
 
